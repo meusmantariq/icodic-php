@@ -36,7 +36,7 @@ final class AuthController
             $token = bin2hex(random_bytes(32));
             DB::query('INSERT INTO password_resets (user_id, token_hash, expires_at) VALUES (?, ?, (NOW() + INTERVAL 1 HOUR))', [$u['id'], hash('sha256', $token)]);
             $link = rtrim(config('app.url', ''), '/') . url('/admin/reset-password?token=' . $token);
-            Mailer::send($email, 'Reset your iCodic admin password', "Hi {$u['name']},\n\nUse this link within 1 hour to set a new password:\n$link\n\nIf you did not request this, ignore this email.");
+            Mailer::send($email, 'Reset your Quantum Nexis admin password', "Hi {$u['name']},\n\nUse this link within 1 hour to set a new password:\n$link\n\nIf you did not request this, ignore this email.");
         }
         Session::flash('success', 'If that email belongs to an admin account, a reset link has been sent.');
         Response::redirect('/admin/forgot-password');

@@ -8,9 +8,9 @@ $public = $env('APP_URL') ?: ($env('RAILWAY_PUBLIC_DOMAIN') ? 'https://' . $env(
 $keyFile = __DIR__ . '/../storage/app.key'; @mkdir(dirname($keyFile), 0755, true);
 $secret = $env('APP_KEY') ?: (is_file($keyFile) ? trim(file_get_contents($keyFile)) : (function () use ($keyFile) { $k = bin2hex(random_bytes(32)); file_put_contents($keyFile, $k); return $k; })());
 $cfg = require __DIR__ . '/../app/config/config.example.php';
-$cfg['app'] = ['name' => 'iCodic', 'url' => rtrim($public, '/'), 'env' => 'production', 'debug' => (bool)$env('APP_DEBUG', false), 'timezone' => $env('APP_TIMEZONE', 'Asia/Dubai'), 'secret' => $secret];
+$cfg['app'] = ['name' => 'Quantum Nexis', 'url' => rtrim($public, '/'), 'env' => 'production', 'debug' => (bool)$env('APP_DEBUG', false), 'timezone' => $env('APP_TIMEZONE', 'Asia/Dubai'), 'secret' => $secret];
 $cfg['db'] = $db + ['charset' => 'utf8mb4', 'socket' => null];
-$cfg['mail']['driver'] = $env('MAIL_DRIVER', 'log'); $cfg['mail']['from_email'] = $env('MAIL_FROM', 'noreply@icodic.com'); $cfg['mail']['admin_email'] = $env('ADMIN_EMAIL', 'admin@icodic.com');
+$cfg['mail']['driver'] = $env('MAIL_DRIVER', 'log'); $cfg['mail']['from_email'] = $env('MAIL_FROM', 'noreply@quantumnexis.si'); $cfg['mail']['admin_email'] = $env('ADMIN_EMAIL', 'admin@quantumnexis.si');
 $cfg['mail']['smtp'] = ['host' => $env('SMTP_HOST', ''), 'port' => (int)$env('SMTP_PORT', 587), 'encryption' => $env('SMTP_ENCRYPTION', 'tls'), 'username' => $env('SMTP_USER', ''), 'password' => $env('SMTP_PASS', '')];
 $cfg['chat']['api_key'] = $env('OPENAI_API_KEY', ''); $cfg['chat']['base_url'] = $env('OPENAI_BASE_URL', 'https://api.openai.com/v1'); $cfg['chat']['model'] = $env('OPENAI_MODEL', 'gpt-4o-mini');
 if ($w = $env('WHATSAPP_NUMBER')) $cfg['site']['whatsapp_number'] = $w;

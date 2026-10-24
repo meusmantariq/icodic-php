@@ -1,4 +1,4 @@
-# iCodic — cPanel Deployment Guide
+# Quantum Nexis — cPanel Deployment Guide
 
 Standalone PHP 8.2+ / MySQL 8 (MariaDB 10.4+) application. No Node, Composer, Docker, cron or SSH required.
 
@@ -7,7 +7,7 @@ PHP 8.2 or newer with extensions: `pdo_mysql`, `mbstring`, `openssl`, `json`, `f
 Apache with `mod_rewrite` (standard on cPanel). `AllowOverride All` is standard on shared hosting.
 
 ## 2. Create the database
-cPanel → **MySQL® Databases** → create a database (e.g. `cpuser_icodic`) and a user with **ALL PRIVILEGES**. Note host (`localhost`), name, user, password.
+cPanel → **MySQL® Databases** → create a database (e.g. `cpuser_qnexis`) and a user with **ALL PRIVILEGES**. Note host (`localhost`), name, user, password.
 
 ## 3. Upload files
 Unzip the release locally. Two supported layouts:

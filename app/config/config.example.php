@@ -1,11 +1,11 @@
 <?php
 /**
- * iCodic configuration. Copy to config.php and edit, or run /install/ in the browser.
+ * Quantum Nexis configuration. Copy to config.php and edit, or run /install/ in the browser.
  * Never commit config.php with real credentials.
  */
 return [
     'app' => [
-        'name'      => 'iCodic',
+        'name'      => 'Quantum Nexis',
         'url'       => 'APP_URL_PLACEHOLDER',   // no trailing slash
         'env'       => 'production',                // production | development
         'debug'     => false,
@@ -24,7 +24,7 @@ return [
     'mail' => [
         'driver'     => 'mail',                      // mail | smtp | log
         'from_email' => 'noreply@example.com',
-        'from_name'  => 'iCodic',
+        'from_name'  => 'Quantum Nexis',
         'admin_email'=> 'ADMIN_EMAIL_PLACEHOLDER',// receives order / contact notifications
         'smtp' => [
             'host'       => 'smtp.example.com',

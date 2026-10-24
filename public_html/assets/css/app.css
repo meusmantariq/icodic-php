@@ -1,4 +1,4 @@
-/* iCodic design system — ported from the original Tailwind theme (index.css) */
+/* Quantum Nexis design system — ported from the original Tailwind theme (index.css) */
 :root{--bg:hsl(210 20% 98%);--fg:hsl(211 17% 15%);--card:#fff;--primary:hsl(243 75% 59%);--primary-fg:#fff;--secondary:hsl(210 20% 96%);--muted:hsl(210 16% 95%);--muted-fg:hsl(210 9% 45%);--border:hsl(210 16% 90%);--destructive:hsl(0 72% 51%);--mint:hsl(158 64% 40%);--cobalt:hsl(226 71% 55%);--radius:.625rem;--font-heading:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;--font-body:'Inter',ui-sans-serif,system-ui,sans-serif;--font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;--max:1400px}
 *,*::before,*::after{box-sizing:border-box;border-color:var(--border)}
 [hidden]{display:none!important}

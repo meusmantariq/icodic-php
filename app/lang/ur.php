@@ -40,7 +40,7 @@ return [
     'testimonials.subtitle' => 'برطانیہ، UAE، بھارت اور پاکستان کے اداروں کا اعتماد۔',
     'global.contact' => 'اس دفتر سے رابطہ کریں',
     'footer.rights' => 'جملہ حقوق محفوظ ہیں۔',
-    'chat.title' => 'iCodic اسسٹنٹ',
+    'chat.title' => 'Quantum Nexis اسسٹنٹ',
     'chat.placeholder' => 'سافٹ ویئر، ERP یا خدمات کے بارے میں پوچھیں…',
     'order.title' => 'استفسار / بکنگ',
     'order.book' => 'ابھی بک کریں',

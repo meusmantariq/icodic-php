@@ -6,8 +6,8 @@ $back = urlencode(parse_url($path, PHP_URL_PATH) ?: '/');
 <header class="header">
   <div class="header-bar"></div>
   <div class="container header-in">
-    <a href="<?= url('/') ?>" class="logo" aria-label="iCodic home">
-      <?php if (!empty($site['company_logo_url'])): ?><img src="<?= e(img($site['company_logo_url'])) ?>" alt="<?= e($company) ?>"><?php else: ?><div class="logo-fallback">iC</div><?php endif; ?>
+    <a href="<?= url('/') ?>" class="logo" aria-label="Quantum Nexis home">
+      <?php if (!empty($site['company_logo_url'])): ?><img src="<?= e(img($site['company_logo_url'])) ?>" alt="<?= e($company) ?>"><?php else: ?><div class="logo-fallback">QN</div><?php endif; ?>
     </a>
     <nav class="nav"><?php foreach ($links as [$k, $to]): ?><a href="<?= url($to) ?>"><?= e(t($k)) ?></a><?php endforeach; ?></nav>
     <div class="flex items-center gap-2">

@@ -122,7 +122,7 @@ final class SiteController
         ]);
         $summary = "Order ID: $orderId\nProduct: {$product['name']} ({$product['brand']})\nBilling: $period\nQuantity: $qty\nTotal (USD): \$$total\n\nCustomer: $name\nEmail: $email\nPhone: {$req->str('phone')}\nCompany: {$req->str('company')}\nRegion: $region\nNotes: " . ($req->str('notes') ?: '-');
         Mailer::notifyAdmin("New Order $orderId — {$product['name']}", "New order received.\n\n$summary\n\nManage in Admin → Orders (CRM).");
-        Mailer::send($email, "Your iCodic order $orderId", "Thank you, $name.\n\nYour order has been received and our team will contact you shortly.\n\n$summary\n\nTrack your order any time: " . config('app.url') . url('/track-order') . "\nWhatsApp: +" . (Repo::settings()['whatsapp_number'] ?? config('site.whatsapp_number')));
+        Mailer::send($email, "Your Quantum Nexis order $orderId", "Thank you, $name.\n\nYour order has been received and our team will contact you shortly.\n\n$summary\n\nTrack your order any time: " . config('app.url') . url('/track-order') . "\nWhatsApp: +" . (Repo::settings()['whatsapp_number'] ?? config('site.whatsapp_number')));
         Response::json(['ok' => true, 'order_id' => $orderId, 'total' => format_price($total), 'email' => $email]);
     }
 

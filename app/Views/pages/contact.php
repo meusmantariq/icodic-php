@@ -3,7 +3,7 @@ $hero = PageBlock::get('contact', 'hero', ['title' => "Let's build your infrastr
 $r = Region::current(); $code = Region::code(); $sent = isset($_GET['sent']); $errors = flash('errors', []);
 $extra = '<a class="btn btn-mint mt-8" href="' . e(config('site.review_url')) . '" target="_blank" rel="noopener noreferrer">' . icon('Star') . ' Leave a Google Review</a>';
 ?>
-<?= App\Core\View::render('partials.page_hero', ['eyebrow' => 'Contact iCodic', 'heading' => $hero['title'], 'sub' => $hero['subtitle'], 'extra' => $extra]) ?>
+<?= App\Core\View::render('partials.page_hero', ['eyebrow' => 'Contact Quantum Nexis', 'heading' => $hero['title'], 'sub' => $hero['subtitle'], 'extra' => $extra]) ?>
 <section class="section" id="form"><div class="container grid lg-2" style="gap:3rem;align-items:start">
   <div class="card reveal" style="padding:2rem">
     <h2 class="h2" style="font-size:1.6rem;margin:0">Send a message</h2><p class="small muted mt-2">Routing to <span class="mint"><?= e($r['city']) ?> (<?= e($code) ?>)</span> office.</p>

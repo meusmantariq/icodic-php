@@ -1,4 +1,4 @@
-/* iCodic — vanilla JS replacing the React interactivity. No build step. */
+/* Quantum Nexis — vanilla JS replacing the React interactivity. No build step. */
 (function () {
   'use strict';
   const $ = (s, r) => (r || document).querySelector(s);
@@ -9,13 +9,13 @@
   const post = (p, data) => fetch(url(p), { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'X-CSRF-Token': CSRF }, body: JSON.stringify(data) }).then(r => r.json());
 
   /* Region auto-detect on first visit (replaces ipapi.co call) */
-  if (!document.cookie.includes('icodic_region=')) {
+  if (!document.cookie.includes('qnexis_region=')) {
     const TZ = { 'Europe/London': 'UK', 'America/Toronto': 'UK', 'America/Vancouver': 'UK', 'America/New_York': 'UK', 'America/Chicago': 'UK', 'America/Los_Angeles': 'UK', 'Asia/Dubai': 'UAE', 'Asia/Kolkata': 'IN', 'Asia/Calcutta': 'IN', 'Asia/Karachi': 'PK' };
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
       const r = TZ[tz];
       const cur = document.documentElement.dataset.region;
-      document.cookie = 'icodic_region=' + (r || cur) + ';path=/;max-age=31536000;SameSite=Lax';
+      document.cookie = 'qnexis_region=' + (r || cur) + ';path=/;max-age=31536000;SameSite=Lax';
       if (r && r !== cur) location.reload();
     } catch (e) {}
   }
@@ -101,7 +101,7 @@
     const fmt = (usd) => sym + ' ' + Math.round(usd * rate).toLocaleString();
     const waBase = modal.dataset.wa;
     const waLink = () => {
-      const t = `Hi iCodic, I'd like to inquire about ${product.name} (${product.brand}).\nName: ${f.customer_name.value || '-'}\nEmail: ${f.email.value || '-'}\nPhone: ${f.phone.value || '-'}\nCompany: ${f.company.value || '-'}\nQuantity: ${f.quantity.value}\nBilling: ${period}\nNotes: ${f.notes.value || '-'}`;
+      const t = `Hi Quantum Nexis, I'd like to inquire about ${product.name} (${product.brand}).\nName: ${f.customer_name.value || '-'}\nEmail: ${f.email.value || '-'}\nPhone: ${f.phone.value || '-'}\nCompany: ${f.company.value || '-'}\nQuantity: ${f.quantity.value}\nBilling: ${period}\nNotes: ${f.notes.value || '-'}`;
       return `https://wa.me/${waBase}?text=${encodeURIComponent(t)}`;
     };
     const refresh = () => {

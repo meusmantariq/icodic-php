@@ -41,7 +41,7 @@ return [
     'testimonials.subtitle' => 'Trusted by enterprises across the UK, the UAE, India and Pakistan.',
     'global.contact' => 'Contact this office',
     'footer.rights' => 'All rights reserved.',
-    'chat.title' => 'iCodic Assistant',
+    'chat.title' => 'Quantum Nexis Assistant',
     'chat.placeholder' => 'Ask about software, ERP or services…',
     'order.title' => 'Inquire / Book',
     'order.book' => 'Book Now',

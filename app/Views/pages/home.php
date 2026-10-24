@@ -22,7 +22,7 @@ $back = urlencode('/');
     <div class="feed">
       <div class="feed-head"><div class="flex items-center gap-2 mono xs upper"><?= icon('Activity', 'ico mint') ?> Live Deployment Feed</div><span class="mono xs mint">● STREAMING</span></div>
       <div class="feed-body"><?php foreach ($feedItems as $f): ?><div class="feed-row"><span class="feed-badge"><?= e($f['region']) ?></span><div style="min-width:0;flex:1"><div class="truncate small"><?= e($f['item']) ?></div><div class="mono xs upper muted"><?= e($f['action']) ?></div></div><span class="dot"></span></div><?php endforeach; ?></div>
-      <div class="feed-foot">Real-time enterprise license &amp; ERP deployments across the iCodic network.</div>
+      <div class="feed-foot">Real-time enterprise license &amp; ERP deployments across the Quantum Nexis network.</div>
     </div>
   </div>
 </section>
@@ -35,7 +35,7 @@ $rings = ['hsl(243 75% 59%/.25)', 'hsl(226 71% 55%/.25)', 'hsl(158 64% 40%/.3)']
     <div class="reveal sec-head center"><div class="eyebrow">// 01 — Ecosystem</div><h2 class="h2"><?= e(t('orbit.title')) ?></h2><p class="lead"><?= e(t('orbit.subtitle')) ?></p></div>
     <div class="reveal orbit-wrap">
       <?php foreach ($orbits as $i => [$rad, $dur, $dir, $items]): ?><div class="ring" style="width:<?= $rad * 2 ?>%;height:<?= $rad * 2 ?>%;border-color:<?= $rings[$i] ?>"></div><?php endforeach; ?>
-      <div class="orbit-core"><?php if (!empty($site['company_logo_url'])): ?><img src="<?= e(img($site['company_logo_url'])) ?>" alt="<?= e($site['company_name'] ?? 'iCodic') ?>"><?php endif; ?><b><?= e($site['company_name'] ?? 'iCodic') ?></b><span>Command Center</span></div>
+      <div class="orbit-core"><?php if (!empty($site['company_logo_url'])): ?><img src="<?= e(img($site['company_logo_url'])) ?>" alt="<?= e($site['company_name'] ?? 'Quantum Nexis') ?>"><?php endif; ?><b><?= e($site['company_name'] ?? 'Quantum Nexis') ?></b><span>Command Center</span></div>
       <?php foreach ($orbits as [$rad, $dur, $dir, $items]): ?><div class="orbit-track" data-radius="<?= $rad ?>" data-duration="<?= $dur ?>" data-dir="<?= $dir ?>">
         <?php foreach ($items as $label): [$fav, $ic] = $brands[$label]; ?><div class="orbit-node" title="<?= e($label) ?>"><?php if ($fav): ?><img src="https://www.google.com/s2/favicons?domain=<?= e($fav) ?>&sz=128" alt="<?= e($label) ?>" loading="lazy" onerror="this.outerHTML='<?= str_replace(['"', "'"], ['&quot;', ''], icon($ic, 'ico text-primary')) ?>'"><?php else: ?><?= icon($ic, 'ico text-primary') ?><?php endif; ?></div><?php endforeach; ?>
       </div><?php endforeach; ?>

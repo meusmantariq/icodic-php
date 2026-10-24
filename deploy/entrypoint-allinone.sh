@@ -6,7 +6,7 @@ PORT="${PORT:-80}"
 sed -ri "s/^Listen .*/Listen ${PORT}/" /etc/apache2/ports.conf
 sed -ri "s/<VirtualHost \*:[0-9]+>/<VirtualHost *:${PORT}>/" /etc/apache2/sites-available/000-default.conf
 
-DB_NAME="${DB_NAME:-icodic}"; DB_USER="${DB_USER:-icodic}"; DB_PASS="${DB_PASS:-$(openssl rand -hex 12)}"
+DB_NAME="${DB_NAME:-qnexis}"; DB_USER="${DB_USER:-qnexis}"; DB_PASS="${DB_PASS:-$(openssl rand -hex 12)}"
 mkdir -p /run/mysqld && chown mysql:mysql /run/mysqld
 if [ ! -d /var/lib/mysql/mysql ]; then mariadb-install-db --user=mysql --datadir=/var/lib/mysql --skip-test-db >/dev/null; fi
 (mariadbd --user=mysql --datadir=/var/lib/mysql >/var/log/mariadb.log 2>&1 &)

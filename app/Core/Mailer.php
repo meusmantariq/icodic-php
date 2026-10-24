@@ -10,7 +10,7 @@ final class Mailer
         $cfg = Config::get('mail', []);
         $driver = $cfg['driver'] ?? 'mail';
         $from = $cfg['from_email'] ?? 'noreply@localhost';
-        $fromName = $cfg['from_name'] ?? 'iCodic';
+        $fromName = $cfg['from_name'] ?? 'Quantum Nexis';
         if (!filter_var($to, FILTER_VALIDATE_EMAIL)) return false;
         $html ??= nl2br(e($text));
         $boundary = 'b' . bin2hex(random_bytes(12));
@@ -19,7 +19,7 @@ final class Mailer
             "Reply-To: $from",
             'MIME-Version: 1.0',
             "Content-Type: multipart/alternative; boundary=\"$boundary\"",
-            'X-Mailer: iCodic-PHP',
+            'X-Mailer: QuantumNexis-PHP',
         ];
         $body = "--$boundary\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n$text\r\n"
               . "--$boundary\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\n" . self::wrapHtml($html, $subject) . "\r\n--$boundary--\r\n";
@@ -42,7 +42,7 @@ final class Mailer
             . '<div style="max-width:600px;margin:auto;background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden">'
             . '<div style="height:4px;background:linear-gradient(90deg,#5b4ee6,#3b63d6,#239a6c)"></div>'
             . '<div style="padding:24px"><h2 style="margin:0 0 12px;font-size:18px">' . e($title) . '</h2><div style="font-size:14px;line-height:1.6">' . $inner . '</div>'
-            . '<p style="margin-top:24px;font-size:11px;color:#6b7280">iCodic · UK · UAE · India · Pakistan</p></div></div></body></html>';
+            . '<p style="margin-top:24px;font-size:11px;color:#6b7280">Quantum Nexis · UK · UAE · India · Pakistan</p></div></div></body></html>';
     }
     private static function log(string $to, string $subject, string $text): void
     {

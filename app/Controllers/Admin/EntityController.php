@@ -39,7 +39,7 @@ final class EntityController
         $d = $this->def($key);
         if (!empty($d['singleton'])) {
             $row = Repo::all($d['table'], 'id ASC', 1)[0] ?? null;
-            if (!$row) { $id = Repo::insert($d['table'], ['company_name' => 'iCodic']); $row = Repo::find($d['table'], $id); }
+            if (!$row) { $id = Repo::insert($d['table'], ['company_name' => 'Quantum Nexis']); $row = Repo::find($d['table'], $id); }
             Response::redirect("/admin/$key/{$row['id']}/edit");
         }
         $q = $req->str('q'); $status = $req->str('status');

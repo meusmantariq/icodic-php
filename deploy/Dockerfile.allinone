@@ -1,4 +1,4 @@
-# iCodic — single-container image (Apache + PHP 8.2 + MariaDB) for $0 hosts such as Render Free.
+# Quantum Nexis — single-container image (Apache + PHP 8.2 + MariaDB) for $0 hosts such as Render Free.
 # Database lives inside the container: fine for testing/demo; data resets when the instance is rebuilt.
 FROM php:8.2-apache
 RUN apt-get update && apt-get install -y --no-install-recommends mariadb-server mariadb-client libpng-dev libjpeg-dev libwebp-dev \

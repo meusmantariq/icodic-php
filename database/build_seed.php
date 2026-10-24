@@ -82,7 +82,7 @@ $rows = loadEntity($src, 'SiteSetting');
 $s = $rows[0] ?? [];
 $logo = localizeImage($s['company_logo_url'] ?? null, $uploadDir, $imageMap);
 $out[] = sprintf("INSERT INTO site_settings (legacy_id, company_name, company_logo_url, hero_title, hero_tagline, admin_email, whatsapp_number, created_at, updated_at) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);",
-    q($s['id'] ?? null), q($s['company_name'] ?? 'Icodic Solutions LLC'), q($logo), q($s['hero_title'] ?? null), q($s['hero_tagline'] ?? 'Enterprise software & ERP, worldwide.'),
+    q($s['id'] ?? null), q($s['company_name'] ?? 'Quantum Nexis LLC'), q($logo), q($s['hero_title'] ?? null), q($s['hero_tagline'] ?? 'Beyond limits IT Solutions.'),
     q(getenv('SEED_ADMIN_EMAIL') ?: null), q('971543517933'), dt($s['created_date'] ?? null), dt($s['updated_date'] ?? null));
 
 // ---------- SoftwareProduct ----------

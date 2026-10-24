@@ -1,6 +1,6 @@
-# Source Inventory — iCodic Base44 app → PHP/MySQL migration
+# Source Inventory — Quantum Nexis Base44 app → PHP/MySQL migration
 
-Base44 app ID: 6a7240b50f7686103f060c79 ("iCodic Enterprise Solutions")
+Base44 app ID: 6a7240b50f7686103f060c79 ("Quantum Nexis Enterprise Solutions")
 
 ## Archive: icodic-core-sync.zip (225,576 bytes, 136 files)
 Complete Base44 project export (frontend source + entity schemas + backend functions). No built `dist/`.

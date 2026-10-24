@@ -16,14 +16,14 @@ final class I18n
     public static function lang(): string
     {
         if (self::$lang) return self::$lang;
-        $l = $_COOKIE['icodic_lang'] ?? Config::get('site.default_lang', 'en');
+        $l = $_COOKIE['qnexis_lang'] ?? Config::get('site.default_lang', 'en');
         return self::$lang = isset(self::LANGUAGES[$l]) ? $l : 'en';
     }
     public static function set(string $lang): void
     {
         if (!isset(self::LANGUAGES[$lang])) return;
         self::$lang = $lang; self::$dict = [];
-        setcookie('icodic_lang', $lang, ['expires' => time() + 86400 * 365, 'path' => '/', 'samesite' => 'Lax']);
+        setcookie('qnexis_lang', $lang, ['expires' => time() + 86400 * 365, 'path' => '/', 'samesite' => 'Lax']);
     }
     public static function dir(): string { return self::LANGUAGES[self::lang()]['dir']; }
     public static function t(string $key, ?string $default = null): string

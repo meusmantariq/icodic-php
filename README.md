@@ -1,4 +1,4 @@
-# iCodic Enterprise Solutions — Standalone PHP/MySQL edition (v1.0.0)
+# Quantum Nexis Enterprise Solutions — Standalone PHP/MySQL edition (v1.1.0)
 
 Independent rebuild of the Base44 app `6a7240b50f7686103f060c79` as a plain PHP 8.2 + MySQL/MariaDB application.
 No framework, no Composer, no Node: PDO prepared statements, modular routing, 4 languages (en/ar/ur/hi, RTL) and 4 regions (UK/UAE/IN/PK), WhatsApp-integrated order flow, admin console for all 13 content entities.

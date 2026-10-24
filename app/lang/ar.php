@@ -40,7 +40,7 @@ return [
     'testimonials.subtitle' => 'موثوق به من قبل الشركات في بريطانيا والإمارات والهند وباكستان.',
     'global.contact' => 'تواصل مع هذا المكتب',
     'footer.rights' => 'جميع الحقوق محفوظة.',
-    'chat.title' => 'مساعد iCodic',
+    'chat.title' => 'مساعد Quantum Nexis',
     'chat.placeholder' => 'اسأل عن البرامج أو ERP أو الخدمات…',
     'order.title' => 'استفسار / حجز',
     'order.book' => 'احجز الآن',

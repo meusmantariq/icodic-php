@@ -1,4 +1,4 @@
-# Render Blueprint — deploys iCodic as a single free web service (Apache + PHP 8.2 + embedded MariaDB).
+# Render Blueprint — deploys Quantum Nexis as a single free web service (Apache + PHP 8.2 + embedded MariaDB).
 services:
   - type: web
     name: icodic-php
@@ -9,7 +9,7 @@ services:
     healthCheckPath: /
     envVars:
       - key: ADMIN_EMAIL
-        value: admin@icodic.com
+        value: admin@quantumnexis.si
       - key: ADMIN_PASSWORD
         generateValue: true
       - key: MAIL_DRIVER

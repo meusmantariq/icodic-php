@@ -2,8 +2,8 @@
 use App\Core\{I18n, Region};
 $site = App\Models\Repo::settings();
 $lang = I18n::lang(); $dir = I18n::dir(); $region = Region::current(); $regionCode = Region::code();
-$company = $site['company_name'] ?? 'iCodic';
-$pageTitle = isset($title) && $title ? e($title) . ' · iCodic' : 'iCodic — Enterprise Software, Hardware & ERP Solutions | UK · UAE · IN · PK';
+$company = $site['company_name'] ?? 'Quantum Nexis';
+$pageTitle = isset($title) && $title ? e($title) . ' · Quantum Nexis' : 'Quantum Nexis — Beyond Limits IT Solutions | Enterprise Software, Hardware & ERP | UK · UAE · IN · PK';
 $path = $_SERVER['REQUEST_URI'] ?? '/';
 ?>
 <!doctype html>
@@ -12,11 +12,12 @@ $path = $_SERVER['REQUEST_URI'] ?? '/';
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="csrf-token" content="<?= e(csrf_token()) ?>">
-<meta name="description" content="iCodic — Global IT software & hardware company. Enterprise software subscriptions (Adobe, MS Office, AutoCAD, 3ds Max), ERPNext, Odoo & custom ERP solutions across the UK, UAE, India & Pakistan.">
-<meta property="og:title" content="iCodic — Enterprise Software, Hardware & ERP Solutions">
+<meta name="description" content="Quantum Nexis — Global IT software & hardware company. Enterprise software subscriptions (Adobe, MS Office, AutoCAD, 3ds Max), ERPNext, Odoo & custom ERP solutions across the UK, UAE, India & Pakistan.">
+<meta property="og:title" content="Quantum Nexis — Enterprise Software, Hardware & ERP Solutions">
 <meta property="og:description" content="Global command center for enterprise software subscriptions, ERP implementations and IT hardware across the UK, UAE, India and Pakistan.">
 <meta property="og:type" content="website">
-<?php if (!empty($site['company_logo_url'])): ?><meta property="og:image" content="<?= e(img($site['company_logo_url'])) ?>"><link rel="icon" href="<?= e(img($site['company_logo_url'])) ?>"><?php endif; ?>
+<?php if (!empty($site['company_logo_url'])): ?><meta property="og:image" content="<?= e(img($site['company_logo_url'])) ?>"><?php endif; ?>
+<link rel="icon" type="image/png" href="<?= url('/assets/img/favicon.png') ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= e(asset('/assets/css/app.css')) ?>">

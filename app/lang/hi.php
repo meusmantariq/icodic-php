@@ -40,7 +40,7 @@ return [
     'testimonials.subtitle' => 'यूके, यूएई, भारत और पाकिस्तान के उद्यमों का भरोसा।',
     'global.contact' => 'इस कार्यालय से संपर्क करें',
     'footer.rights' => 'सर्वाधिकार सुरक्षित।',
-    'chat.title' => 'iCodic सहायक',
+    'chat.title' => 'Quantum Nexis सहायक',
     'chat.placeholder' => 'सॉफ़्टवेयर, ERP या सेवाओं के बारे में पूछें…',
     'order.title' => 'पूछताछ / बुकिंग',
     'order.book' => 'अभी बुक करें',

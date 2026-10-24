@@ -1,6 +1,6 @@
 <?php
 /**
- * iCodic — front controller.
+ * Quantum Nexis — front controller.
  * Deploy layout A (recommended): upload `app/`, `database/`, `storage/` one level ABOVE public_html and the contents of
  * `public_html/` into public_html. Layout B: upload the whole folder into public_html (app/ is protected by .htaccess).
  */

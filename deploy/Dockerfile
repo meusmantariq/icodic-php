@@ -1,4 +1,4 @@
-# iCodic — container image for Railway / Render / any Docker host (PHP 8.2 + Apache).
+# Quantum Nexis — container image for Railway / Render / any Docker host (PHP 8.2 + Apache).
 FROM php:8.2-apache
 RUN apt-get update && apt-get install -y --no-install-recommends libpng-dev libjpeg-dev libwebp-dev libzip-dev default-mysql-client \
  && docker-php-ext-configure gd --with-jpeg --with-webp && docker-php-ext-install -j"$(nproc)" pdo_mysql gd opcache \

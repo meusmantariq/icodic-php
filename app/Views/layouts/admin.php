@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?= e($title ?? 'Admin') ?> · iCodic Admin</title>
+<title><?= e($title ?? 'Admin') ?> · Quantum Nexis Admin</title>
 <meta name="robots" content="noindex">
 <meta name="csrf-token" content="<?= csrf_token() ?>">
 <link rel="stylesheet" href="<?= asset('assets/css/app.css') ?>">

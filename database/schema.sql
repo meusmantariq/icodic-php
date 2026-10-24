@@ -1,4 +1,4 @@
--- iCodic — MySQL 8 / MariaDB 10.4+ schema
+-- Quantum Nexis — MySQL 8 / MariaDB 10.4+ schema
 -- Charset utf8mb4 for Arabic / Urdu / Hindi content.
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -6,7 +6,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 CREATE TABLE IF NOT EXISTS site_settings (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   legacy_id VARCHAR(32) NULL,
-  company_name VARCHAR(190) NOT NULL DEFAULT 'iCodic',
+  company_name VARCHAR(190) NOT NULL DEFAULT 'Quantum Nexis',
   company_logo_url VARCHAR(500) NULL,
   hero_title VARCHAR(500) NULL,
   hero_tagline VARCHAR(500) NULL,

@@ -1,4 +1,4 @@
-# iCodic — Apache configuration
+# Quantum Nexis — Apache configuration
 Options -Indexes -MultiViews
 DirectoryIndex index.php
 AddDefaultCharset UTF-8
