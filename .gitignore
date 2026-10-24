@@ -1,0 +1,12 @@
+# never commit generated config or runtime data
+app/config/config.php
+storage/
+public_html/uploads/20*/
+*.zip
+database/seed_full.sql
+database/image_map.json
+.DS_Store
+# raw exports containing customer data stay private
+database/source/*Order_export.csv
+database/source/*SecurityAssessment_export.csv
+database/source/ContactMessage.json

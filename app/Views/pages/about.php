@@ -1,0 +1,28 @@
+<?php use App\Models\PageBlock; use App\Core\Region;
+$hero = PageBlock::get('about', 'hero', ['title' => 'Engineering digital infrastructure across three continents.', 'subtitle' => 'iCodic.com is a UK-headquartered IT software and hardware company operating across the United Kingdom, the United Arab Emirates, India and Pakistan. We are a single, accountable partner for enterprise software licensing, ERP implementation and IT hardware — from procurement to long-term managed support.']);
+$mission = PageBlock::get('about', 'mission', ['title' => 'Democratize enterprise-grade IT', 'body' => 'We exist to make enterprise software and ERP systems accessible, compliant and dependable for organizations of every size — from startups in Karachi to enterprises in London. Our command-center approach unifies licensing, implementation and support so technology never becomes a blocker.']);
+$mimg = PageBlock::get('about', 'mission-image', ['image_url' => '/uploads/migrated/b5645257f_generated_154d5387.png']);
+$cta = PageBlock::get('about', 'cta', ['title' => 'Ready to deploy?', 'subtitle' => 'Talk to a regional specialist about software licensing, ERP implementation or hardware procurement.']);
+$values = [['Shield', 'Compliance-First', 'Region-ready deployments — UAE VAT, PEPPOL and local regulatory alignment baked in.'], ['Cpu', 'Hardware + Software', 'We bridge physical infrastructure and digital licensing under one accountable partner.'], ['Layers', 'Bespoke When Needed', 'When off-the-shelf falls short, we engineer custom CRM and ERP systems from the ground up.'], ['Globe2', 'Truly Global', 'Four offices across the United Kingdom, the Middle East and South Asia — follow-the-sun support.']];
+$certs = [['AI for App Building', 'Google', 'Jun 2026', '29VAD8RA0R1O'], ['ChatGPT: Master Free AI Tools to Supercharge Productivity', 'Vanderbilt University', 'Jun 2026', 'ENZW12WFF8QP'], ['Google AI Professional Certificate', 'Google', 'Jun 2026', 'OGWSJFPIL7WI'], ['Ethical Hacker', 'Cisco', 'Oct 2024', null], ['Computer Hardware Basics', 'Cisco', 'Nov 2023', null], ['Cyber Threat Management', 'Cisco', 'Nov 2023', null], ['Endpoint Security', 'Cisco', 'Nov 2023', null], ['Introduction to Cybersecurity', 'Cisco', 'Nov 2023', null], ['Network Support and Security', 'Cisco', 'Nov 2023', null], ['Operating Systems Basics', 'Cisco', 'Nov 2023', null]];
+$pastel = ['c-blue', 'c-emerald', 'c-violet', 'c-amber'];
+?>
+<?= App\Core\View::render('partials.page_hero', ['eyebrow' => 'About iCodic', 'heading' => $hero['title'], 'sub' => $hero['subtitle']]) ?>
+<section class="section"><div class="container grid lg-2" style="align-items:center;gap:3rem">
+  <div class="reveal"><div class="eyebrow">Our Mission</div><h2 class="h2"><?= e($mission['title']) ?></h2><p class="lead"><?= e($mission['body']) ?></p></div>
+  <div class="reveal card" style="overflow:hidden;aspect-ratio:4/3"><img src="<?= e(img($mimg['image_url'])) ?>" alt="Global command center visual" style="width:100%;height:100%;object-fit:cover"></div>
+</div></section>
+<section class="section section-sec"><div class="container">
+  <div class="reveal sec-head center"><div class="eyebrow">// What we stand for</div><h2 class="h2">Operating principles</h2></div>
+  <div class="grid sm-2 lg-4 mt-8"><?php foreach ($values as $i => [$ic, $t, $x]): ?><div class="svc reveal"><div class="icon-circle <?= $pastel[$i] ?>"><?= icon($ic) ?></div><h3><?= e($t) ?></h3><p><?= e($x) ?></p></div><?php endforeach; ?></div>
+</div></section>
+<section class="section"><div class="container">
+  <div class="reveal sec-head"><div class="eyebrow">// Global presence</div><h2 class="h2">Where we operate</h2></div>
+  <div class="grid sm-2 lg-4 mt-8"><?php foreach (Region::all() as $r): ?><div class="svc reveal"><div class="flex justify-between"><span class="mono mint" style="font-weight:700"><?= e($r['code']) ?></span><span class="mono xs muted" data-tz="<?= e($r['tz']) ?>"><?= e(local_time($r['tz'])) ?></span></div><h3 style="margin-top:.5rem"><?= e($r['city']) ?></h3><p><?= e($r['name']) ?></p><p class="mt-3 small" style="color:var(--fg);font-weight:500"><?= e($r['contact']) ?></p><p class="xs"><?= e($r['role']) ?></p></div><?php endforeach; ?></div>
+</div></section>
+<section class="section section-sec"><div class="container">
+  <div class="reveal sec-head center"><div class="eyebrow">// Credentials</div><h2 class="h2">Licenses &amp; Certifications</h2><p class="lead">Continuous learning across AI, cyber security and enterprise networking — led by our founder Usman Tariq.</p></div>
+  <div class="grid sm-2 lg-3 mt-8"><?php foreach ($certs as [$n, $iss, $d, $id]): ?><div class="cert reveal"><div class="flex gap-3"><span class="icon-circle c-amber" style="width:2.5rem;height:2.5rem;font-size:1.1rem;flex:none"><?= icon('Award') ?></span><div><h3><?= e($n) ?></h3><p class="small muted"><?= e($iss) ?></p></div></div><div class="cert-foot"><span>Issued <?= e($d) ?></span><?php if ($id): ?><span>ID: <?= e($id) ?></span><?php endif; ?></div></div><?php endforeach; ?></div>
+  <div class="card reveal mt-8" style="padding:1.5rem"><div class="flex items-center gap-2"><?= icon('BookOpen', 'ico mint') ?><h3 style="font-size:1.1rem;font-weight:600">Courses Completed</h3></div><div class="flex wrap gap-2 mt-4"><?php foreach (['CCNA', 'A+', 'CCNP', 'A++', 'MCSE'] as $c): ?><span class="tag tag-mint"><?= icon('BadgeCheck') ?> <?= e($c) ?></span><?php endforeach; ?></div></div>
+</div></section>
+<section class="section"><div class="container center reveal"><h2 class="h2"><?= e($cta['title']) ?></h2><p class="lead"><?= e($cta['subtitle']) ?></p><a class="btn btn-primary mt-8" href="<?= url('/contact') ?>">Start a conversation <?= icon('ArrowRight') ?></a></div></section>

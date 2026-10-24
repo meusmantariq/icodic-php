@@ -1,0 +1,18 @@
+# iCodic — single-container image (Apache + PHP 8.2 + MariaDB) for $0 hosts such as Render Free.
+# Database lives inside the container: fine for testing/demo; data resets when the instance is rebuilt.
+FROM php:8.2-apache
+RUN apt-get update && apt-get install -y --no-install-recommends mariadb-server mariadb-client libpng-dev libjpeg-dev libwebp-dev \
+ && docker-php-ext-configure gd --with-jpeg --with-webp && docker-php-ext-install -j"$(nproc)" pdo_mysql gd opcache \
+ && a2enmod rewrite headers && apt-get clean
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public_html
+RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf /etc/apache2/apache2.conf \
+ && sed -ri 's!AllowOverride None!AllowOverride All!g' /etc/apache2/apache2.conf \
+ && printf 'ServerName localhost\nSetEnvIf X-Forwarded-Proto https HTTPS=on\n' > /etc/apache2/conf-available/icodic.conf && a2enconf icodic \
+ && printf 'upload_max_filesize=8M\npost_max_size=10M\nexpose_php=Off\nsession.cookie_httponly=1\nmemory_limit=128M\n' > /usr/local/etc/php/conf.d/icodic.ini \
+ && printf '[mysqld]\nbind-address=127.0.0.1\nskip-name-resolve\nperformance_schema=OFF\ninnodb_buffer_pool_size=32M\ninnodb_log_file_size=16M\nmax_connections=25\ntable_open_cache=200\nkey_buffer_size=4M\ntmp_table_size=8M\nmax_heap_table_size=8M\ncharacter-set-server=utf8mb4\ncollation-server=utf8mb4_unicode_ci\n' > /etc/mysql/mariadb.conf.d/99-lowmem.cnf
+WORKDIR /var/www/html
+COPY . /var/www/html
+RUN mv public_html/install /opt/install-disabled && mkdir -p storage/logs storage/sessions public_html/uploads && chown -R www-data:www-data storage public_html/uploads app/config \
+ && chmod +x deploy/entrypoint-allinone.sh
+EXPOSE 80
+ENTRYPOINT ["/var/www/html/deploy/entrypoint-allinone.sh"]

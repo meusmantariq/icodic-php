@@ -1,0 +1,1 @@
+<div class="err-page"><div class="eyebrow">// 500</div><h1 class="h1">Something went wrong</h1><p class="lead" style="margin:1rem auto 0">The error has been logged. Please try again shortly.</p><a class="btn btn-primary mt-8" href="<?= url('/') ?>">Back to home</a></div>

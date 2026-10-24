@@ -1,0 +1,1 @@
+<div class="err-page"><div class="eyebrow">// 419</div><h1 class="h1">Session expired</h1><p class="lead" style="margin:1rem auto 0">Your form token expired. Please go back and submit again.</p><a class="btn btn-primary mt-8" href="javascript:history.back()">Go back</a></div>

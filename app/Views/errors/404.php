@@ -1,0 +1,1 @@
+<div class="err-page"><div class="eyebrow">// 404</div><h1 class="h1">Page not found</h1><p class="lead" style="margin:1rem auto 0"><?= e($message ?? '') ?></p><a class="btn btn-primary mt-8" href="<?= url('/') ?>"><?= icon('ArrowRight') ?> Back to home</a></div>

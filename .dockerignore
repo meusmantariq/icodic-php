@@ -1,0 +1,7 @@
+storage/
+app/config/config.php
+.git
+*.zip
+tests/
+docs/
+database/seed_full.sql

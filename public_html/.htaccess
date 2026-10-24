@@ -1,0 +1,41 @@
+# iCodic — Apache configuration
+Options -Indexes -MultiViews
+DirectoryIndex index.php
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # RewriteBase /            # uncomment and set if installed in a sub-directory
+
+  # Protect application internals when deployed inside public_html (layout B)
+  RewriteRule ^(app|database|storage|tests|docs)(/|$) - [F,L]
+  RewriteRule (^|/)\.(?!well-known) - [F,L]
+
+  # Serve existing files/directories directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else → front controller
+  RewriteRule ^ index.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg|woff2?)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+<FilesMatch "\.(sql|log|json|lock|md|env|ini|sh)$">
+  Require all denied
+</FilesMatch>
+
+# Never execute scripts from uploads
+<IfModule mod_rewrite.c>
+  RewriteRule ^uploads/.*\.(php|phtml|phar|pl|py|cgi)$ - [F,L]
+</IfModule>
+

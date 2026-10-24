@@ -1,0 +1,18 @@
+# Render Blueprint — deploys iCodic as a single free web service (Apache + PHP 8.2 + embedded MariaDB).
+services:
+  - type: web
+    name: icodic-php
+    runtime: docker
+    plan: free
+    dockerfilePath: ./deploy/Dockerfile.allinone
+    dockerContext: .
+    healthCheckPath: /
+    envVars:
+      - key: ADMIN_EMAIL
+        value: admin@icodic.com
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: MAIL_DRIVER
+        value: log
+      - key: APP_TIMEZONE
+        value: Asia/Dubai
