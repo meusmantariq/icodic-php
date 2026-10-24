@@ -1,0 +1,16 @@
+Quantum Nexis website - cPanel install (5 minutes)
+===================================================
+This ZIP is laid out so that its CONTENTS go straight into public_html.
+
+1. cPanel > MySQL Databases: create a database and a user with ALL PRIVILEGES. Note database name, user, password.
+2. cPanel > File Manager > public_html: upload this ZIP and click "Extract". Everything (index.php, .htaccess,
+   assets/, uploads/, install/, app/, database/, storage/, docs/) must sit directly inside public_html.
+   app/, database/ and storage/ are blocked from the web by .htaccess.
+3. cPanel > MultiPHP Manager: PHP 8.2 or newer for the domain.
+4. Open https://quantumnexis.si/install/  -> fill in the database details, keep "Import seed data" ticked,
+   choose your admin email + password, submit.
+5. Delete the public_html/install folder afterwards.
+6. Log in at https://quantumnexis.si/admin/login
+
+Optional: docs/DEPLOYMENT.md explains SMTP mail, the AI chat key, cron and the alternative layout
+(app/ one level above public_html, which the application also detects automatically).

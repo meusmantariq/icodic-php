@@ -12,7 +12,17 @@ if (PHP_SAPI === 'cli-server') {
     if ($p !== '/' && is_file(__DIR__ . rtrim($p, '/') . '/index.php')) { require __DIR__ . rtrim($p, '/') . '/index.php'; return; }
 }
 define('DOCROOT', __DIR__);
-$appDir = is_dir(__DIR__ . '/../app') ? __DIR__ . '/../app' : __DIR__ . '/app';
+/** Locate the folder that holds app/ and database/. Supports: app/ next to public_html (A), app/ inside the web root (B),
+ *  or the ZIP extracted as a sub-folder (e.g. public_html/icodic-php/app). */
+if (!function_exists('qn_find_base')) { function qn_find_base(string $docroot): ?string {
+    $c = [dirname($docroot), $docroot];
+    foreach (array_merge(glob($docroot . '/*/app/bootstrap.php') ?: [], glob(dirname($docroot) . '/*/app/bootstrap.php') ?: []) as $f) $c[] = dirname(dirname($f));
+    foreach ($c as $d) if (is_file($d . '/app/bootstrap.php') && is_dir($d . '/database')) return realpath($d) ?: $d;
+    return null;
+} }
+$base = qn_find_base(__DIR__);
+if ($base === null) { http_response_code(500); exit('<h2>Application folders not found.</h2><p>Upload <code>app/</code>, <code>database/</code> and <code>storage/</code> next to index.php (or one level above public_html), then reload. Run <code>/install/</code> to configure.</p>'); }
+$appDir = $base . '/app';
 require $appDir . '/bootstrap.php';
 
 use App\Core\{Request, Router, View, Response};

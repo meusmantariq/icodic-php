@@ -5,7 +5,17 @@
 declare(strict_types=1);
 error_reporting(E_ALL); ini_set('display_errors', '1');
 $docroot = dirname(__DIR__);
-$base = is_dir($docroot . '/../app') ? dirname($docroot) : $docroot;
+/** Locate the folder that holds app/ and database/. Supports: app/ next to public_html (A), app/ inside the web root (B),
+ *  or the ZIP extracted as a sub-folder (e.g. public_html/icodic-php/app). */
+if (!function_exists('qn_find_base')) { function qn_find_base(string $docroot): ?string {
+    $c = [dirname($docroot), $docroot];
+    foreach (array_merge(glob($docroot . '/*/app/bootstrap.php') ?: [], glob(dirname($docroot) . '/*/app/bootstrap.php') ?: []) as $f) $c[] = dirname(dirname($f));
+    foreach ($c as $d) if (is_file($d . '/app/bootstrap.php') && is_dir($d . '/database')) return realpath($d) ?: $d;
+    return null;
+} }
+$base = qn_find_base($docroot);
+$layoutProblem = $base === null;
+$base = $base ?? dirname($docroot);
 $appDir = $base . '/app'; $dbDir = $base . '/database';
 $configFile = $appDir . '/config/config.php';
 if (is_file($configFile)) { http_response_code(403); exit('<h2>Already installed.</h2><p>Delete <code>app/config/config.php</code> to re-run the installer, and remove this <code>install/</code> folder from your server.</p>'); }
@@ -17,6 +27,7 @@ $checks = [
     'openssl extension' => extension_loaded('openssl'),
     'json extension' => extension_loaded('json'),
     'fileinfo extension (uploads)' => extension_loaded('fileinfo'),
+    'app/ folder found (app/bootstrap.php)' => is_file($appDir . '/bootstrap.php'),
     'app/config writable' => is_writable($appDir . '/config'),
     'uploads/ writable' => is_writable($docroot . '/uploads'),
     'storage/ writable (will be created)' => is_writable($base) || is_writable($base . '/storage'),
@@ -51,8 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $ok) {
             if ($pdo->query('SELECT COUNT(*) FROM site_settings')->fetchColumn() == 0) $pdo->exec("INSERT INTO site_settings (company_name, hero_tagline) VALUES ('Quantum Nexis LLC', 'Beyond limits IT Solutions.')");
             $pdo->prepare('UPDATE site_settings SET admin_email = ? WHERE admin_email IS NULL OR admin_email = ""')->execute([$adminEmail]);
             $cfg = file_get_contents($appDir . '/config/config.example.php');
-            $rep = ['APP_URL_PLACEHOLDER' => $url, 'DB_HOST_PLACEHOLDER' => $host, 'DB_NAME_PLACEHOLDER' => $name, 'DB_USER_PLACEHOLDER' => $user, 'DB_PASS_PLACEHOLDER' => $pass, 'APP_KEY_PLACEHOLDER' => bin2hex(random_bytes(32)), 'ADMIN_EMAIL_PLACEHOLDER' => $adminEmail, "'port' => 3306" => "'port' => $port"];
+            $rep = ['APP_URL_PLACEHOLDER' => $url, 'DB_HOST_PLACEHOLDER' => $host, 'DB_NAME_PLACEHOLDER' => $name, 'DB_USER_PLACEHOLDER' => $user, 'DB_PASS_PLACEHOLDER' => $pass, 'APP_KEY_PLACEHOLDER' => bin2hex(random_bytes(32)), 'ADMIN_EMAIL_PLACEHOLDER' => $adminEmail];
             $cfg = str_replace(array_keys($rep), array_map(fn($x) => addslashes((string)$x), array_values($rep)), $cfg);
+            $cfg = preg_replace("/'port'(\s*)=> 3306,/", "'port'$1=> $port,", $cfg, 1);
             if (file_put_contents($configFile, $cfg) === false) throw new RuntimeException('Could not write app/config/config.php');
             @mkdir($base . '/storage/logs', 0755, true); @mkdir($base . '/storage/sessions', 0700, true);
             $done = true;
@@ -68,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $ok) {
 <ol style="margin-top:1.5rem;line-height:1.8"><li><b>Delete the <code>install/</code> folder</b> from the server now.</li><li>Open <a href="<?= htmlspecialchars($url) ?>/">the website</a> and <a href="<?= htmlspecialchars($url) ?>/admin">the admin console</a>.</li><li>Set the mail options in <code>app/config/config.php</code> (SMTP recommended) so order and contact notifications are delivered.</li><li>Optional: add an OpenAI-compatible API key in config to enable the AI live chat (it works in catalog-only mode without one).</li></ol>
 <?php else: ?>
 <h3>Requirements</h3><table><?php foreach ($checks as $k => $c): ?><tr><td><?= $k ?></td><td class="<?= $c ? 'ok' : 'bad' ?>"><?= $c ? '✓ OK' : '✗ Missing' ?></td></tr><?php endforeach; ?></table>
-<?php if (!$ok): ?><div class="err">Fix the items marked ✗ (cPanel → Select PHP Version / File permissions 755) and reload.</div><?php else: ?>
+<?php if (!$ok): ?><div class="err"><?php if ($layoutProblem): ?>The <code>app/</code> and <code>database/</code> folders were not found. Searched: <code><?= htmlspecialchars(dirname($docroot)) ?>/app</code>, <code><?= htmlspecialchars($docroot) ?>/app</code> and any sub-folder of those. Upload the ZIP so that <code>app/</code>, <code>database/</code>, <code>storage/</code> sit either next to <code>index.php</code> in <code><?= htmlspecialchars($docroot) ?></code> (simplest: extract the cPanel ZIP directly into public_html) or one level above it. Then reload.<?php else: ?>Fix the items marked ✗ (cPanel → Select PHP Version / File permissions 755) and reload.<?php endif; ?></div><?php else: ?>
 <?php foreach ($errors as $e): ?><div class="err"><?= htmlspecialchars($e) ?></div><?php endforeach; ?>
 <form method="post">
 <h3 style="margin-top:1.5rem">Database (create it first in cPanel → MySQL® Databases)</h3>
