@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $ok) {
                 foreach (array_filter(array_map('trim', preg_split('/;\s*\n/', $sql))) as $stmt) $pdo->exec($stmt);
             };
             $run($dbDir . '/schema.sql');
-            if ($seed) $run($dbDir . '/seed.sql');
+            if ($seed) $run(is_file($dbDir . '/seed_full.sql') ? $dbDir . '/seed_full.sql' : $dbDir . '/seed.sql'); // full seed (with customer records) ships only in the private ZIP
             $st = $pdo->prepare('INSERT INTO admin_users (name, email, password_hash, role, is_active) VALUES (?, ?, ?, "admin", 1) ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), name = VALUES(name)');
             $st->execute([$adminName, $adminEmail, password_hash($adminPass, PASSWORD_DEFAULT)]);
             if ($pdo->query('SELECT COUNT(*) FROM site_settings')->fetchColumn() == 0) $pdo->exec("INSERT INTO site_settings (company_name, hero_tagline) VALUES ('Icodic Solutions LLC', 'Enterprise software & ERP, worldwide.')");

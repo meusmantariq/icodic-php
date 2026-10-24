@@ -51,3 +51,9 @@ Uploads go to `public_html/uploads/YYYY/MM/`. Migrated Base44 images live in `pu
 - **404 on inner pages**: `mod_rewrite` disabled or `.htaccess` not uploaded (hidden file).
 - **Emails not arriving**: switch `mail.driver` to `smtp` with an authenticated cPanel mailbox; check `storage/logs/mail.log` when the driver is `log`.
 - **Local testing**: `cd public_html && php -S 127.0.0.1:8080 index.php`, then run `tests/smoke.sh http://127.0.0.1:8080`.
+
+## 9. Container / PaaS deployment (Render, Railway, Docker)
+- `deploy/Dockerfile.allinone` + `render.yaml`: one container with Apache + PHP 8.2 + embedded MariaDB. Used for the free Render test instance. Filesystem is ephemeral on Render Free: the database and uploads reset to the seed whenever the instance restarts or spins down after 15 idle minutes; the admin account is recreated from `ADMIN_EMAIL` / `ADMIN_PASSWORD` on every boot.
+- `deploy/Dockerfile` + `railway.json`: app container with an external MySQL (`MYSQL_URL` or `MYSQLHOST`…) for persistent hosting.
+- Both run `deploy/make_config.php` (config from env) and `database/cli_install.php` (idempotent schema + seed + admin) at start.
+- The public GitHub seed (`database/seed.sql`) contains content only; `database/seed_full.sql` in the release ZIP also contains the original orders, contact messages and security assessments. Import it instead of `seed.sql` on your cPanel database (the web installer uses seed_full.sql automatically when present).
