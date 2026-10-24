@@ -25,8 +25,8 @@ final class Csrf
     {
         $token = $req->input('_token') ?? $req->header('X-CSRF-Token');
         if (!self::verify($token)) {
-            if ($req->wantsJson()) Response::json(['ok' => false, 'error' => 'Invalid or expired form token. Please reload the page.'], 419);
-            http_response_code(419);
+            if ($req->wantsJson()) Response::json(['ok' => false, 'error' => 'Invalid or expired form token. Please reload the page.'], 403);
+            http_response_code(403); // 403 (not 419): Apache maps unknown status codes to 500
             echo View::render('errors/419', ['title' => 'Session expired']);
             exit;
         }
