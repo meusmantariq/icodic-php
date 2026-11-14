@@ -13,6 +13,7 @@
 <aside class="side">
   <a class="brand" href="<?= url('/admin') ?>"><?= icon('Shield') ?> Command Console</a>
   <a href="<?= url('/admin') ?>" class="<?= preg_match('~/admin/?(\?|$)~', $cur) ? 'active' : '' ?>"><?= icon('LayoutDashboard') ?>&nbsp; Dashboard</a>
+  <div class="grp">Sales & Accounts</div><a href="<?= url('/admin/finance') ?>">Accounts Dashboard</a><a href="<?= url('/admin/customers') ?>">Customers</a><a href="<?= url('/admin/quotations') ?>">Quotations</a><a href="<?= url('/admin/sales-orders') ?>">Sales Orders</a><a href="<?= url('/admin/invoices') ?>">Sales Invoices</a>
   <div class="grp">Catalog</div>
   <?php foreach ($reg as $k => $d): if (!empty($d['inbox']) || !empty($d['singleton'])) continue; ?>
   <a href="<?= url("/admin/$k") ?>" class="<?= str_contains($cur, "/admin/$k") ? 'active' : '' ?>"><span><?= e($d['label']) ?></span><?php if (isset($counts[$k])): ?><span class="cnt"><?= $counts[$k] ?></span><?php endif; ?></a>
