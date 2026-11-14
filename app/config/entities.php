@@ -5,7 +5,7 @@
  */
 $regions = ['Canada', 'UAE', 'India', 'Pakistan', 'Global'];
 return [
-    'software' => ['table' => 'software_products', 'label' => 'Software', 'title' => 'Software Products', 'subtitle' => 'Adobe, Microsoft, Autodesk & enterprise catalog', 'order' => 'created_at DESC', 'search' => ['name', 'brand', 'sku', 'description'],
+    'software' => ['table' => 'software_products', 'label' => 'Item Master', 'title' => 'Item Master', 'subtitle' => 'Adobe, Microsoft, Autodesk & enterprise catalog', 'order' => 'created_at DESC', 'search' => ['name', 'brand', 'sku', 'description'],
         'fields' => [
             ['name' => 'name', 'label' => 'Product Name', 'type' => 'text', 'required' => true],
             ['name' => 'brand', 'label' => 'Brand', 'type' => 'select', 'options' => ['Adobe', 'Microsoft', 'Autodesk', 'Other'], 'tag' => true, 'required' => true],
@@ -145,5 +145,6 @@ return [
             ['name' => 'hero_title', 'label' => 'Hero Title (overrides the translated default)', 'type' => 'text'],
             ['name' => 'admin_email', 'label' => 'Notification Email (orders, contact, assessments)', 'type' => 'text'],
             ['name' => 'whatsapp_number', 'label' => 'WhatsApp Number (digits only, e.g. 971543517933)', 'type' => 'text'],
+            ['name' => 'payment_link', 'label' => 'Default Payment Link', 'type' => 'text'],
         ]],
 ];

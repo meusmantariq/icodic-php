@@ -87,7 +87,7 @@ final class SalesDocumentController
         return View::page('admin.sales.form', $this->viewData([
             'title' => 'New ' . SalesDocument::TYPE_LABEL[$type],
             'type' => $type, 'slug' => $slug, 'doc' => $doc, 'lines' => $lines,
-            'customers' => $customers, 'isNew' => true,
+            'customers' => $customers, 'items' => DB::fetchAll("SELECT id,name,sku,description,price_monthly,image_url FROM software_products WHERE in_stock = 1 ORDER BY name ASC"), 'isNew' => true,
             'errors' => flash('errors', []),
         ]), 'layouts.admin');
     }

@@ -32,6 +32,8 @@ $router->get('/admin/account', [AuthController::class, 'account']);
 $router->post('/admin/account', [AuthController::class, 'updateAccount']);
 
 use App\Controllers\Admin\{CustomerController,SalesDocumentController,FinanceController,SalesSetupController};
+use App\Controllers\Admin\ItemMasterController;
+$router->get('/admin/item-master', [ItemMasterController::class, 'index']); $router->get('/admin/item-master/new', [ItemMasterController::class, 'create']); $router->post('/admin/item-master', [ItemMasterController::class, 'store']); $router->get('/admin/item-master/{id:\d+}/edit', [ItemMasterController::class, 'edit']); $router->post('/admin/item-master/{id:\d+}', [ItemMasterController::class, 'update']); $router->post('/admin/item-master/{id:\d+}/delete', [ItemMasterController::class, 'destroy']);
 $router->get('/admin/sales/setup', [SalesSetupController::class, 'index']);
 $router->post('/admin/sales/setup', [SalesSetupController::class, 'install']);
 $router->get('/admin/customers', [CustomerController::class, 'index']); $router->get('/admin/customers/new', [CustomerController::class, 'create']); $router->post('/admin/customers', [CustomerController::class, 'store']); $router->get('/admin/customers/{id:\d+}/edit', [CustomerController::class, 'edit']); $router->post('/admin/customers/{id:\d+}', [CustomerController::class, 'update']); $router->post('/admin/customers/{id:\d+}/delete', [CustomerController::class, 'destroy']);
